@@ -14,6 +14,10 @@ const CarrinhoStyled = styled.div`
   h2 {
     padding: 0;
     margin: 0;
+    color: gray;
+  }
+  p{
+    color: gray;
   }
 `
 
