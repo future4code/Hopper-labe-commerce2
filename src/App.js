@@ -12,7 +12,6 @@ const Estilo = styled.div`
 
 const ProdutosStyled = styled.div`
   display: flex;
-  flex-direction: ;
   border: 1px solid;
 `
 const Imagem = styled.img`
