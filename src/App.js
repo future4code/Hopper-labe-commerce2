@@ -17,6 +17,19 @@ const ProdutosStyled = styled.div`
 const Imagem = styled.img`
   height: 15rem;
 `
+const Card = styled.div`
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  text-align:center;
+`;
+const AreaProduto = styled.div`
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+`;
 
 class App extends React.Component {
   state = {
@@ -137,13 +150,12 @@ class App extends React.Component {
   render() {
     const listaDeProdutos = this.state.produtos.map((produto, index) => {
       return (
-        <ProdutosStyled>
+        <ProdutosStyled key = {index}>
           <div>
             <div>{produto.imageUrl}</div>
             <p>{produto.name}</p>
             <p>Valor: R$ {produto.value}</p>
             <button>Adicionar ao Carrinho</button>
-            {/* key = {index} */}
           </div>
         </ProdutosStyled>
       )
@@ -155,13 +167,13 @@ class App extends React.Component {
           <Filtro></Filtro>
         </div>
 
-        <div>
+        <AreaProduto>
           <p>Quantidade de produtos: 10</p>
           <p>
             Ordenação: <section></section>
           </p>
-          {listaDeProdutos}
-        </div>
+          <Card>{listaDeProdutos}</Card>
+        </AreaProduto>
 
         <div>
           <Carrinho></Carrinho>
