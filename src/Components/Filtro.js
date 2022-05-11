@@ -6,26 +6,25 @@ const FiltroStyled = styled.div`
   flex-direction: column;
   border: 1px solid;
   width: 13rem;
-  height: 20rem;
+  height: 100%;
   padding: 1rem;
+
   input {
     width: 80%;
     padding: 0px;
     font-size: 15px;
     border-width: 2px;
-    border-color: #CCCCCC;
-    background-color: #3D94F6;
+    border-color: #cccccc;
+    background-color: #3d94f6;
     color: #000000;
     border-style: solid;
-     
-    
   }
   h2 {
     padding: 0;
     margin: 0;
     color: gray;
   }
-  p{
+  p {
     color: gray;
   }
 `
