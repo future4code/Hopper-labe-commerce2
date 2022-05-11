@@ -10,10 +10,23 @@ const FiltroStyled = styled.div`
   padding: 1rem;
   input {
     width: 80%;
+    padding: 0px;
+    font-size: 15px;
+    border-width: 2px;
+    border-color: #CCCCCC;
+    background-color: #3D94F6;
+    color: #000000;
+    border-style: solid;
+     
+    
   }
   h2 {
     padding: 0;
     margin: 0;
+    color: gray;
+  }
+  p{
+    color: gray;
   }
 `
 
