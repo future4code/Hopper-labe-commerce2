@@ -269,8 +269,9 @@ class App extends React.Component {
         (produto.value >= valorMinimo && produto.value <= valorMaximo) ||
         produto.name.includes(buscarProduto)
       ) {
-        return produto
+        return true
       }
+      return false
     })
 
     this.setState({
@@ -320,20 +321,47 @@ class App extends React.Component {
     })
   }
 
-  adicionarCarrinho = produto => {
-    console.log(this.state.carrinho)
-    const addCarrinho = {
-      ...produto,
-      quantidade: 1
-    }
-    const arrayCarrinho = [...this.state.carrinho, addCarrinho]
+  adicionarCarrinho = (id) =>{
+    const carrinhoCompras = this.state.carrinho.find(produto => id === produto.id)
+      if (carrinhoCompras){
+        const novoCarrinho = this.state.carrinho.map((produto)=>{
+          if (id === produto.id){
+            return {
+              ...produto, quantidade: produto.quantidade+1
+            }
+          }
+          return produto
+        })
+        this.setState({carrinho:novoCarrinho})
+      } else{
+        const novoProduto = this.state.produtos.find(produto => id === produto.id)
+        const novoCarrinho = [...this.state.carrinho, {...novoProduto,quantidade:1}]
+        this.setState({carrinho:novoCarrinho})
+      }
+  }
 
-    this.setState({
-      carrinho: arrayCarrinho
-    })
+  // removerProduto = (id) =>{
+  //   const deletaProduto = this.state.carrinho.filter((produto)=>{
+  //     return produto.id !== id
+  //   })
+  //   this.setState({carrinho:deletaProduto})
+  // }
+
+  removerProduto = (id) => {
+    const deletaProduto = this.state.carrinho.map((produto) => {
+      if (produto.id === id){
+        return {
+          ...produto, quantidade: produto.quantidade -1
+        }
+      }
+      return produto
+    }).filter((produto) => produto.quantidade > 0)
+    this.setState({carrinho:deletaProduto})
   }
 
   render() {
+    console.log(this.state.produtos)
+    console.log(this.state.carrinho)
     const listaDeProdutos = this.state.produtos.map((produto, index) => {
       return (
         <ProdutosStyled key={index}>
@@ -343,7 +371,7 @@ class App extends React.Component {
             <p>Valor: R$ {produto.value}</p>
             <button
               onClick={() => {
-                this.adicionarCarrinho(produto)
+                this.adicionarCarrinho(produto.id)
               }}
             >
               Adicionar ao Carrinho
@@ -352,7 +380,7 @@ class App extends React.Component {
         </ProdutosStyled>
       )
     })
-
+    console.log(listaDeProdutos)
     return (
       <Estilo>
         <div>
@@ -361,7 +389,7 @@ class App extends React.Component {
 
         <AreaProduto>
           <Texto>
-            <h4>Quantidade de produtos: 12</h4>
+            <h4>Quantidade de produtos: {this.state.produtos.length}</h4>
             <h4>Ordenação:</h4>
             <Section onChange={this.verificaOrdemDosProdutos}>
               <option value="crescente">Crescente</option>
@@ -372,7 +400,7 @@ class App extends React.Component {
         </AreaProduto>
 
         <div>
-          <Carrinho carrinho={this.state.carrinho}></Carrinho>
+          <Carrinho carrinho={this.state.carrinho} onClick={this.removerProduto}></Carrinho>
         </div>
       </Estilo>
     )
