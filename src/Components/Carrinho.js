@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import excluir from '../Assets/lixeira.svg'
 
 const CarrinhoStyled = styled.div`
   display: block;
@@ -21,6 +22,10 @@ const CarrinhoStyled = styled.div`
     margin: 5px;
     color: gray;
   }
+  img{
+   cursor:pointer;
+   width:1.3vw;
+  }
 `
 
 class Carrinho extends React.Component {
@@ -33,6 +38,7 @@ class Carrinho extends React.Component {
           <div>
             <p>{produto.quantidade}</p>
             <p>{produto.name}</p>
+            <img src={excluir} onClick={() => this.props.onClick(produto.id)}/>
           </div>
         </div>
       )
