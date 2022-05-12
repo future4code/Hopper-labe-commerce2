@@ -6,7 +6,6 @@ const FiltroStyled = styled.div`
   flex-direction: column;
   border: 1px solid;
   width: 13rem;
-  height: 100%;
   padding: 1rem;
 
   input {

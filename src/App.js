@@ -22,8 +22,9 @@ const Estilo = styled.div`
   justify-content: space-between;
   margin: 1rem;
   background-color: black;
-  padding: 0;
+  padding: 20px;
   margin: 0;
+  height: 100%;
 `
 
 const ProdutosStyled = styled.div`
@@ -266,14 +267,15 @@ class App extends React.Component {
   filtrarProdutos = (valorMaximo, valorMinimo, buscarProduto) => {
     const listaDeProdutosExibidos = produtos.filter(produto => {
       if (
-        (produto.value >= valorMinimo && produto.value <= valorMaximo) ||
-        produto.name.includes(buscarProduto)
+        (produto.value >= Number(valorMinimo) || valorMinimo === '') &&
+        (produto.value <= Number(valorMaximo) || valorMaximo === '') &&
+        produto.name.toUpperCase().includes(buscarProduto.toUpperCase())
       ) {
-        return true
+        return produto
       }
-      return false
     })
 
+    console.log(valorMinimo)
     this.setState({
       produtos: listaDeProdutosExibidos
     })
@@ -321,47 +323,47 @@ class App extends React.Component {
     })
   }
 
-  adicionarCarrinho = (id) =>{
-    const carrinhoCompras = this.state.carrinho.find(produto => id === produto.id)
-      if (carrinhoCompras){
-        const novoCarrinho = this.state.carrinho.map((produto)=>{
-          if (id === produto.id){
-            return {
-              ...produto, quantidade: produto.quantidade+1
-            }
+  adicionarCarrinho = id => {
+    const carrinhoCompras = this.state.carrinho.find(
+      produto => id === produto.id
+    )
+    if (carrinhoCompras) {
+      const novoCarrinho = this.state.carrinho.map(produto => {
+        if (id === produto.id) {
+          return {
+            ...produto,
+            quantidade: produto.quantidade + 1
           }
-          return produto
-        })
-        this.setState({carrinho:novoCarrinho})
-      } else{
-        const novoProduto = this.state.produtos.find(produto => id === produto.id)
-        const novoCarrinho = [...this.state.carrinho, {...novoProduto,quantidade:1}]
-        this.setState({carrinho:novoCarrinho})
-      }
+        }
+        return produto
+      })
+      this.setState({ carrinho: novoCarrinho })
+    } else {
+      const novoProduto = this.state.produtos.find(produto => id === produto.id)
+      const novoCarrinho = [
+        ...this.state.carrinho,
+        { ...novoProduto, quantidade: 1 }
+      ]
+      this.setState({ carrinho: novoCarrinho })
+    }
   }
 
-  // removerProduto = (id) =>{
-  //   const deletaProduto = this.state.carrinho.filter((produto)=>{
-  //     return produto.id !== id
-  //   })
-  //   this.setState({carrinho:deletaProduto})
-  // }
-
-  removerProduto = (id) => {
-    const deletaProduto = this.state.carrinho.map((produto) => {
-      if (produto.id === id){
-        return {
-          ...produto, quantidade: produto.quantidade -1
+  removerProduto = id => {
+    const deletaProduto = this.state.carrinho
+      .map(produto => {
+        if (produto.id === id) {
+          return {
+            ...produto,
+            quantidade: produto.quantidade - 1
+          }
         }
-      }
-      return produto
-    }).filter((produto) => produto.quantidade > 0)
-    this.setState({carrinho:deletaProduto})
+        return produto
+      })
+      .filter(produto => produto.quantidade > 0)
+    this.setState({ carrinho: deletaProduto })
   }
 
   render() {
-    console.log(this.state.produtos)
-    console.log(this.state.carrinho)
     const listaDeProdutos = this.state.produtos.map((produto, index) => {
       return (
         <ProdutosStyled key={index}>
@@ -380,7 +382,7 @@ class App extends React.Component {
         </ProdutosStyled>
       )
     })
-    console.log(listaDeProdutos)
+
     return (
       <Estilo>
         <div>
@@ -400,7 +402,10 @@ class App extends React.Component {
         </AreaProduto>
 
         <div>
-          <Carrinho carrinho={this.state.carrinho} onClick={this.removerProduto}></Carrinho>
+          <Carrinho
+            carrinho={this.state.carrinho}
+            onClick={this.removerProduto}
+          ></Carrinho>
         </div>
       </Estilo>
     )
