@@ -15,54 +15,50 @@ import Camisa9 from './img/camisa9.png'
 import Camisa10 from './img/camisa10.png'
 import Camisa11 from './img/camisa11.png'
 import Camisa12 from './img/camisa12.png'
+import Logo from './img/logo.png'
+
 
 const Estilo = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 1rem;
-  background-color: black;
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+  overflow: hidden;
   padding: 20px;
   margin: 0;
   height: 100%;
+  
 `
 
 const ProdutosStyled = styled.div`
   display: flex;
-  border: 1px solid;
   padding: 10px;
   button {
-    background: #3d94f6;
-    background-image: -webkit-linear-gradient(top, #3d94f6, #1e62d0);
-    background-image: -moz-linear-gradient(top, #3d94f6, #1e62d0);
-    background-image: -ms-linear-gradient(top, #3d94f6, #1e62d0);
-    background-image: -o-linear-gradient(top, #3d94f6, #1e62d0);
-    background-image: -webkit-gradient(to bottom, #3d94f6, #1e62d0);
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    color: #ffffff;
-    font-family: Arial;
-    margin: 5px;
-    padding: 10px;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    text-align: center;
+  margin-top: 15px;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
   }
   button:hover {
-    border: solid #337fed 1px;
-    background: #1e62d0;
-    background-image: -webkit-linear-gradient(top, #1e62d0, #3d94f6);
-    background-image: -moz-linear-gradient(top, #1e62d0, #3d94f6);
-    background-image: -ms-linear-gradient(top, #1e62d0, #3d94f6);
-    background-image: -o-linear-gradient(top, #1e62d0, #3d94f6);
-    background-image: -webkit-gradient(to bottom, #1e62d0, #3d94f6);
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    text-decoration: none;
+    background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	  background-color:#e9e9e9;
   }
+  button:active {
+	position:relative;
+	top:1px;
+}
 
   p {
     color: white;
@@ -105,10 +101,23 @@ const Section = styled.select`
   font-size: 15px;
   border-width: 2px;
   border-color: #cccccc;
-  background-color: #3d94f6;
   color: #000000;
   border-style: solid;
+  
+     font-size: 17px;
+     border-width: 1px;
+     border-color: #ffffff;
+     background-color: #333b49;
+     color: #ffffff;
+     border-style: groove;
+     border-radius: 15px;
+     box-shadow: 0px 0px 12px rgba(160,160,160,.53);
+     text-shadow: 0px 0px 7px rgba(66,66,66,.75);
+  
 `
+
+
+
 
 const produtos = [
   {
@@ -384,12 +393,20 @@ class App extends React.Component {
     })
 
     return (
+      
       <Estilo>
+       
+        
         <div>
           <Filtro filtrarProdutos={this.filtrarProdutos} />
+         
         </div>
 
         <AreaProduto>
+        <div>
+          <img src={Logo} />
+          <p>Camisa AstroLab feitas especialmente para você.</p>
+        </div>
           <Texto>
             <h4>Quantidade de produtos: {this.state.produtos.length}</h4>
             <h4>Ordenação:</h4>
