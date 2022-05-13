@@ -4,10 +4,12 @@ import excluir from '../Assets/lixeira.svg'
 
 const CarrinhoStyled = styled.div`
   display: block;
-  border: 1px solid;
   width: 15rem;
   height: 20rem;
   padding: 1rem;
+  margin-top: 200px;
+  background-color: #14161a;
+  border-radius: 15px;
 
   input {
     width: 80%;
@@ -15,7 +17,7 @@ const CarrinhoStyled = styled.div`
   h2 {
     padding: 0;
     margin: 5px;
-    color: gray;
+    color: white;
   }
   p {
     display: inline;

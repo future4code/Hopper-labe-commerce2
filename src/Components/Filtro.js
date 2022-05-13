@@ -2,26 +2,35 @@ import React from 'react'
 import styled from 'styled-components'
 
 const FiltroStyled = styled.div`
-  display: flex;
+  display: block;
   flex-direction: column;
-  border: 1px solid;
   width: 13rem;
   padding: 1rem;
+  margin-top: 200px;
+  
+  
 
   input {
-    width: 80%;
     padding: 0px;
-    font-size: 15px;
-    border-width: 2px;
-    border-color: #cccccc;
-    background-color: #3d94f6;
-    color: #000000;
-    border-style: solid;
+     font-size: 17px;
+     border-width: 1px;
+     border-color: #ffffff;
+     background-color: #333b49;
+     color: #ffffff;
+     border-style: groove;
+     border-radius: 15px;
+     box-shadow: 0px 0px 12px rgba(160,160,160,.53);
+     text-shadow: 0px 0px 7px rgba(66,66,66,.75);
+     :focus{
+      outline:none;
+     }
+  
   }
+ 
   h2 {
     padding: 0;
     margin: 0;
-    color: gray;
+    color: white;
   }
   p {
     color: gray;
