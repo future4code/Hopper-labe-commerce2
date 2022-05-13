@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Carrinho from './Components/Carrinho'
 import Filtro from './Components/Filtro'
+import './app.css'
 
 import Camisa1 from './img/camisa1.png'
 import Camisa2 from './img/camisa2.png'
@@ -17,48 +18,47 @@ import Camisa11 from './img/camisa11.png'
 import Camisa12 from './img/camisa12.png'
 import Logo from './img/logo.png'
 
-
 const Estilo = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: left;
+  flex-direction: row; */
+  /* justify-content: space-between; */
   margin: 1rem;
-  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   overflow: hidden;
   padding: 20px;
   margin: 0;
   height: 100%;
-  
 `
 
 const ProdutosStyled = styled.div`
   display: flex;
   padding: 10px;
   button {
-  margin-top: 15px;
-  box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-	background-color:#f9f9f9;
-	border-radius:6px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	cursor:pointer;
-	color:#666666;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 20px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffffff;
+    margin-top: 15px;
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 20px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffffff;
   }
   button:hover {
-    background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-	  background-color:#e9e9e9;
+    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+    background-color: #e9e9e9;
   }
   button:active {
-	position:relative;
-	top:1px;
-}
+    position: relative;
+    top: 1px;
+  }
 
   p {
     color: white;
@@ -67,6 +67,12 @@ const ProdutosStyled = styled.div`
 `
 const Imagem = styled.img`
   height: 15rem;
+`
+const ImagemLogo = styled.img`
+  display: flex;
+  height: 10rem;
+  margin: auto;
+  padding: 0;
 `
 
 const Card = styled.div`
@@ -85,15 +91,17 @@ const AreaProduto = styled.div`
 `
 const Texto = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   h4 {
     padding-left: 3.5rem;
   }
 `
 
 const Section = styled.select`
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
   margin: 1.1rem;
   height: 1.5rem;
   width: 30%;
@@ -103,21 +111,17 @@ const Section = styled.select`
   border-color: #cccccc;
   color: #000000;
   border-style: solid;
-  
-     font-size: 17px;
-     border-width: 1px;
-     border-color: #ffffff;
-     background-color: #333b49;
-     color: #ffffff;
-     border-style: groove;
-     border-radius: 15px;
-     box-shadow: 0px 0px 12px rgba(160,160,160,.53);
-     text-shadow: 0px 0px 7px rgba(66,66,66,.75);
-  
+
+  font-size: 17px;
+  border-width: 1px;
+  border-color: #ffffff;
+  background-color: #333b49;
+  color: #ffffff;
+  border-style: groove;
+  border-radius: 15px;
+  box-shadow: 0px 0px 12px rgba(160, 160, 160, 0.53);
+  text-shadow: 0px 0px 7px rgba(66, 66, 66, 0.75);
 `
-
-
-
 
 const produtos = [
   {
@@ -393,20 +397,16 @@ class App extends React.Component {
     })
 
     return (
-      
       <Estilo>
-       
-        
         <div>
           <Filtro filtrarProdutos={this.filtrarProdutos} />
-         
         </div>
 
         <AreaProduto>
-        <div>
-          <img src={Logo} />
-          <p>Camisa AstroLab feitas especialmente para você.</p>
-        </div>
+          <div>
+            <ImagemLogo src={Logo} />
+            <p>Camisa AstroLab feitas especialmente para você.</p>
+          </div>
           <Texto>
             <h4>Quantidade de produtos: {this.state.produtos.length}</h4>
             <h4>Ordenação:</h4>
